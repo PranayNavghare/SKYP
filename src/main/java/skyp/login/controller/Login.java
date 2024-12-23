@@ -1,4 +1,6 @@
-package skyp.login.web;
+
+
+package skyp.login.controller;
 
 import java.io.IOException;
 
@@ -8,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import skyp.login.bean.LoginBean;
-import skyp.login.database.LoginDao;
+import skyp.login.dao.LoginDao;
 
 /**
  * Servlet implementation class Login
@@ -59,7 +61,7 @@ public class Login extends HttpServlet {
 
 		try {
 			if (logindao.validate(loginbean)) {
-				response.sendRedirect("choosepath.jsp");
+				response.sendRedirect("dashboard.jsp");
 			} else {
 				response.sendRedirect("login.jsp");
 			}

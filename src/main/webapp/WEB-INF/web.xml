@@ -39,4 +39,24 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>skyp.login.controller.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProfileController</display-name>
+    <servlet-name>ProfileController</servlet-name>
+    <servlet-class>skyp.profile.controller.ProfileController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileController</servlet-name>
+    <url-pattern>/ProfileController</url-pattern>
+  </servlet-mapping>
 </web-app>

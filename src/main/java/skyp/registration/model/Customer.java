@@ -7,6 +7,7 @@ public class Customer {
 	private String company;
 	private String phone;
 	private String mail;
+	private String role;
 
 	public String getUsername() {
 		return username;
@@ -46,6 +47,14 @@ public class Customer {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getRole() {
+		return role;
 	}
 
 }

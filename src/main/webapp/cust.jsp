@@ -100,7 +100,7 @@ h1 {
 
   <script type="text/javascript">
     setTimeout(function() {
-      window.location.href = "choosepath.jsp";
+      window.location.href = "dashboard.jsp";
     }, 4000);
   </script>
 </body>

@@ -1,254 +1,241 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SKYP</title>
-<style>
-body {
-	font-family: 'Arial', sans-serif; /* Use Arial font */
-	background-color: #f4f4f4; /* Light gray background */
-	color: #333; /* Dark gray text */
-	margin: 0;
-	padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYP - Cloud Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #21618c;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-header {
-	background-color: #3498db; /* Sky blue background */
-	color: white;
-	padding: 20px 40px; /* Add padding to the header */
-	text-align: left; /* Align text to the left */
-	display: flex; /* Use flexbox for alignment */
-	justify-content: flex-start; /* Align items to the left */
-	align-items: center; /* Align items vertically */
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-h1 {
-	margin: 0;
-	font-size: 2.5em; /* Larger header font size */
-}
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-nav {
-	background-color: #2980b9; /* Darker blue for navigation */
-	padding: 10px 0;
-	display: flex; /* Use flexbox for navigation */
-	gap: 10px; /* Add spacing between navigation links */
-	margin-left: 20px; /* Add margin to the left of navigation */
-}
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
 
-nav a {
-	color: white;
-	text-decoration: none;
-	padding: 10px 15px;
-	display: inline-block;
-	transition: background-color 0.3s;
-	/* Smooth transition for hover effect */
-}
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-nav a:hover {
-	background-color: #21618c; /* Even darker blue on hover */
-}
+        .logo {
+            font-size: 2em;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-.login-buttons {
-	display: flex; /* Use flexbox for buttons */
-	gap: 10px; /* Add spacing between buttons */
-	margin-left: auto; /* Push buttons to the right */
-}
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
 
-.login-button, .create-account-button {
-	background-color: #21618c; /* Blue button color */
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
 
-.login-button:hover {
-	background-color: #1a4d73; /* Darker blue on hover */
-}
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
 
-.create-account-button:hover {
-	background-color: #1a4d73; /* Darker blue on hover */
-}
+        .login-buttons {
+            display: flex;
+            gap: 1rem;
+        }
 
-main {
-	padding: 20px;
-	text-align: center; /* Center content */
-	width: 80%; /* Adjust width as needed */
-	max-width: 800px; /* Adjust max-width as needed */
-	margin: 0 auto; /* Center the main content horizontally */
-}
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
 
-h2 {
-	color: #3498db; /* Matching header color */
-	margin-bottom: 10px;
-}
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
 
-p {
-	line-height: 1.6; /* Adjust line spacing */
-}
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
 
-.feature-blocks {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-bottom: 30px;
-	width: 100%; /* Make feature blocks full width */
-	max-width: 100%; /* Ensure feature blocks don't exceed screen width */
-}
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-.feature-block {
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 20px;
-	text-align: left;
-	width: 300px;
-	flex: 1 1 300px; /* Allow for flexible width adjustment */
-	margin-right: 20px; /* Add right margin to feature blocks */
-}
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
 
-.feature-block:last-child {
-	margin-right: 0; /* Remove right margin from the last feature block */
-}
+        .welcome-section h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
 
-.feature-block h3 {
-	color: #3498db;
-	margin-bottom: 10px;
-}
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
 
-.contact-support {
-	margin-top: 30px;
-	width: 100%; /* Make contact/support sections full width */
-	max-width: 100%;
-	/* Ensure contact/support sections don't exceed screen width */
-}
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
 
-.contact-support h2 {
-	color: #3498db;
-	margin-bottom: 10px;
-}
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
 
-.contact-support p {
-	margin-bottom: 20px;
-}
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
 
-.contact-form, .support-form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
+        .contact-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
 
-.contact-form input, .support-form input, .contact-form textarea,
-	.support-form textarea {
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
-.contact-form button, .support-form button {
-	background-color: #21618c;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
 
-.contact-form button:hover, .support-form button:hover {
-	background-color: #1a4d73;
-}
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-.welcome-text {
-	text-align: center;
-	margin-bottom: 30px;
-	width: 100%; /* Make welcome text full width */
-	max-width: 100%; /* Ensure welcome text doesn't exceed screen width */
-}
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
 
-.welcome-text h2 {
-	font-size: 2.5em;
-	color: #3498db;
-	margin-bottom: 10px;
-}
-
-.welcome-text p {
-	font-size: 1.2em;
-	line-height: 1.6;
-	color: #555;
-}
-</style>
+            .login-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="header-container">
+            <a href="index.jsp" class="logo">SKYP</a>
+            <nav>
+                <a href="index.jsp" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="support.html"><i class="fas fa-headset"></i> Support</a>
+            </nav>
+            <div class="login-buttons">
+                <button class="btn btn-primary" onclick="location.href='./login.jsp'">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary" onclick="location.href='./custReg.jsp'">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </div>
+        </div>
+    </header>
 
-	<header>
-		<h1>SKYP</h1>
-		<nav>
-			<a class="active" href="index.jsp">Home</a> <a href="about.html">About</a>
-			<a href="contact.html">Contact</a> <a href="support.html">Support</a>
-		</nav>
-		<div class="login-buttons">
-			<button class="login-button" onclick="location.href='./login.jsp'">Login</button>
-			<button class="create-account-button"
-				onclick="location.href='./custReg.jsp'">Create a SKYP
-				Account</button>
-		</div>
-	</header>
+    <main>
+        <section class="welcome-section">
+            <h1>Welcome to SKYP</h1>
+            <p>Empowering your digital journey with cutting-edge cloud solutions and reliable hosting services.</p>
+        </section>
 
-	<main>
-		<div class="welcome-text">
-			<h2>Welcome to SKYP</h2>
-			<p>Discover a world of possibilities with SKYP. Our platform
-				connects you with the resources and tools you need to succeed.</p>
-		</div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3><i class="fas fa-server"></i> Space Allocation</h3>
+                <p>Smart space allocation for optimal resource utilization and cost efficiency.</p>
+            </div>
+            <div class="feature-card">
+                <h3><i class="fas fa-tasks"></i> Product Selection</h3>
+                <p>Tailored hosting solutions to match your specific needs and requirements.</p>
+            </div>
+            <div class="feature-card">
+                <h3><i class="fas fa-chart-line"></i> Report Generation</h3>
+                <p>Detailed analytics and insights for informed decision-making.</p>
+            </div>
+        </div>
 
-		<div class="feature-blocks">
-			<div class="feature-block">
-				<h3>Space Allocation</h3>
-				<p>Skyp optimizes your web hosting by intelligently allocating
-					space, ensuring efficient resource utilization and preventing
-					overspending.</p>
-			</div>
-			<div class="feature-block">
-				<h3>Product Selection</h3>
-				<p>Skyp empowers you to select the perfect product for your
-					needs, offering a diverse range of hosting plans tailored to
-					individual websites and projects.</p>
-			</div>
-			<div class="feature-block">
-				<h3>Report Generation</h3>
-				<p>Skyp generates comprehensive reports, providing valuable
-					insights into your website's performance, resource usage, and
-					cost-effectiveness.</p>
-			</div>
-		</div>
-
-		<div class="contact-support">
-			<h2>Contact Us</h2>
-			<p>Have questions or need help? Reach out to us!</p>
-			<form class="contact-form">
-				<input type="text" placeholder="Your Name" required> <input
-					type="email" placeholder="Your Email" required>
-				<textarea placeholder="Your Message" required></textarea>
-				<button type="submit">Send Message</button>
-			</form>
-		</div>
-
-		<div class="contact-support">
-			<h2>Need Support?</h2>
-			<p>Find answers to common questions or get in touch with our
-				support team.</p>
-			<form class="support-form">
-				<input type="text" placeholder="Your Account ID" required>
-				<textarea placeholder="Describe your issue" required></textarea>
-				<button type="submit">Submit Request</button>
-			</form>
-		</div>
-	</main>
-
+        <section class="contact-section">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Your Message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

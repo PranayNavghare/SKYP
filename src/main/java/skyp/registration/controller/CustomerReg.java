@@ -52,6 +52,7 @@ public class CustomerReg extends HttpServlet {
 		String company = request.getParameter("company");
 		String phone = request.getParameter("phone");
 		String mail = request.getParameter("email");
+		String role = request.getParameter("role");
 
 		Customer customer = new Customer();
 
@@ -60,6 +61,7 @@ public class CustomerReg extends HttpServlet {
 		customer.setCompany(company);
 		customer.setPhone(phone);
 		customer.setMail(mail);
+		customer.setRole(role);
 
 		try {
 			custDao.custReg(customer);
