@@ -1,0 +1,186 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Authentication Container */
+.auth-container {
+    display: flex;
+    width: 800px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Left Info Section */
+.info-section {
+    width: 40%;
+    background: #181818;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.info-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.info-section p {
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+.switch-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff5f7e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.switch-btn:hover {
+    background: #e14a67;
+}
+
+/* Right Form Section */
+.form-section {
+    width: 60%;
+    padding: 40px;
+}
+
+.form-section h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #252525;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #ff5f7e;
+}
+
+/* Buttons */
+.auth-btn, .reset-btn, .btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.auth-btn {
+    background: #ff5f7e;
+    color: #fff;
+}
+
+.auth-btn:hover {
+    background: #e14a67;
+}
+
+.reset-btn {
+    background: #333;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.reset-btn:hover {
+    background: #444;
+}
+
+/* Style for the Register Button */
+.btn-primary {
+    background: #ff5f7e;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #e14a67;
+}
+
+/* Make form responsive */
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .info-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 12px 15px;
+    }
+
+    .btn-primary,
+    .auth-btn,
+    .reset-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

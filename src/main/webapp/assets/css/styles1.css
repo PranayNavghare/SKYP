@@ -1,0 +1,667 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: white;
+}
+
+/* 🔹 HEADER */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    padding: 15px 0;
+}
+
+/* 🔹 LOGO */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo img {
+    max-width: 70px;
+    height: auto;
+}
+
+.logo span {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* 🔹 NAVIGATION */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+nav ul li a:hover {
+    opacity: 1;
+}
+
+/* 🔹 HEADER BUTTONS */
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.login-btn:hover {
+    background-color: white;
+    color: #333;
+}
+
+.signup-btn {
+    background-color: #ff5a7b;
+    color: white;
+    border: none;
+}
+
+.signup-btn:hover {
+    background-color: #ff2e5a;
+}
+
+/* 🔹 FOOTER */
+footer {
+    background-color: #333; /* Same as header */
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+/* 🔹 FOOTER LOGO */
+.footer-logo img {
+    max-width: 80px;
+}
+
+/* 🔹 FOOTER LINKS */
+.footer-links {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links div {
+    text-align: left;
+}
+
+.footer-links h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 5px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+    opacity: 1;
+    color: #ff5a7b;
+}
+
+/* 🔹 SOCIAL ICONS */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 24px; /* Bigger size for visibility */
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff5a7b;
+}
+
+/* 🔹 CONTACT BUTTON */
+.contact-btn {
+    background-color: #ff5a7b;
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #ff2e5a;
+}
+
+/* 🔹 COPYRIGHT */
+.footer-bottom {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* 🔹 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .contact-btn {
+        width: auto;
+        padding: 12px 20px;
+    }
+}
+
+
+/* 🔹 CONTACT PAGE */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #181818;
+}
+
+.contact-box {
+    background: #1e1e1e;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.contact-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #282828;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #ff4d6d;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff4d6d;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #e03e5e;
+}
+
+/* 🔹 ABOUT SECTION */
+.about-section {
+    background-color: #111;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+h1 span {
+    color: #ff3b62;
+}
+
+/* 🔹 ABOUT BOXES */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.about-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    margin: 10px;
+    min-width: 250px;
+    transition: 0.3s;
+    text-align: left;
+}
+
+.about-box h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.about-box p,
+.about-box ul {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* 🔹 LIST STYLING */
+.about-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-box ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Adding custom check icon before list items */
+.about-box ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #ff3b62;
+    font-weight: bold;
+}
+
+/* 🔹 HOVER EFFECT */
+.about-box:hover {
+    background: #333;
+    transform: translateY(-5px);
+}
+
+/* 🔹 RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-box {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .about-box {
+        text-align: center;
+    }
+}
+
+/* 🔹 GENERAL STYLING */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #181818;  /* Dark Background */
+    color: white;
+}
+
+/* 🔹 SUPPORT CONTAINER */
+.support-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #1e1e1e; /* Darker container for contrast */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* 🔹 HEADER */
+.support-header h2 {
+    font-size: 28px;
+    color: white;
+}
+
+.support-header p {
+    font-size: 16px;
+    color: #aaa;
+}
+
+/* 🔹 FORM */
+.support-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444; /* Softer borders */
+    border-radius: 5px;
+    font-size: 16px;
+    background: #282828;  /* Dark input field */
+    color: white;
+}
+
+textarea {
+    resize: none;
+}
+
+/* 🔹 BUTTON */
+.submit-btn {
+    background-color: #ff4d6d;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #e03e5e;
+}
+
+.submit-btn i {
+    margin-right: 5px;
+}
+
+/* 🔹 FEATURES */
+.support-features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.feature-card {
+    flex: 1;
+    padding: 20px;
+    background: #222;  /* Darker background */
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    background: #ff4d6d;
+    color: white;
+}
+
+.feature-card i {
+    font-size: 30px;
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+.feature-card:hover i {
+    color: white;
+}
+
+/* 🔹 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .support-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .support-features {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #bbb;
+    max-width: 600px;
+    margin: 10px auto 30px;
+}
+
+.cta-btn {
+    padding: 12px 25px;
+    background: #ff5e78;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    opacity: 0.8;
+}
+
+/* Features Section */
+.features {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.features h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.feature-box {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature i {
+    font-size: 2rem;
+    color: #ff5e78;
+    margin-bottom: 10px;
+}
+
+.feature:hover {
+    background: #222;
+}
+
+/* Pricing Section */
+.pricing {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.pricing-box {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.plan {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.plan h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.plan p {
+    font-size: 1.2rem;
+    color: #ff5e78;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.plan ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan ul li {
+    margin: 10px 0;
+}
+
+.pricing-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff5e78;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.pricing-btn:hover {
+    opacity: 0.8;
+}
+
+
