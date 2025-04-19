@@ -37,7 +37,7 @@ public class LoginDao {
 
         loadDriver(jdbcDriver);
         Connection connection = getConnection();
-        String sql = "SELECT * FROM customerdb WHERE id = ? AND username = ? AND pass = ?";
+        String sql = "SELECT * FROM users WHERE id = ? AND username = ? AND pass = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

@@ -10,7 +10,7 @@ public class CustomerDao {
 
 	public int custReg(Customer cust) {
 
-		String query = "insert into customerdb(username,pass,company,phone,email,role) values(?,?,?,?,?,?);";
+		String query = "insert into users(username,pass,company,phone,email,role) values(?,?,?,?,?,?);";
 
 		int result = 0;
 

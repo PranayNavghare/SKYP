@@ -1,5 +1,4 @@
 
-
 package skyp.login.controller;
 
 import java.io.IOException;
@@ -9,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import skyp.login.bean.LoginBean;
 import skyp.login.dao.LoginDao;
 
@@ -19,33 +19,11 @@ import skyp.login.dao.LoginDao;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginDao logindao;
-	
+
 	public void init() {
 		logindao = new LoginDao();
 	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Login() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -61,9 +39,12 @@ public class Login extends HttpServlet {
 
 		try {
 			if (logindao.validate(loginbean)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("username", username);
 				response.sendRedirect("dashboard.jsp");
 			} else {
-				response.sendRedirect("login.jsp");
+				request.setAttribute("error", "Invalid username or password");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

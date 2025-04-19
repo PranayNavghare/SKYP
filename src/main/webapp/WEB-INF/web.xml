@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
   <display-name>SKYP</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -9,6 +9,10 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+  </error-page>
   <servlet>
     <description></description>
     <display-name>CustomerRegistration</display-name>
@@ -58,5 +62,47 @@
   <servlet-mapping>
     <servlet-name>ProfileController</servlet-name>
     <url-pattern>/ProfileController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FileServlet</servlet-name>
+    <servlet-class>skyp.file.FileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileServlet</servlet-name>
+    <url-pattern>/uploads/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileUploadServlet</display-name>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.FileUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/FileUploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DashboardServlet</display-name>
+    <servlet-name>DashboardServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DashboardServlet</servlet-name>
+    <url-pattern>/DashboardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DashboardServlet</servlet-name>
+    <url-pattern>/dashboard</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddWebsiteServlet</display-name>
+    <servlet-name>AddWebsiteServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.AddWebsiteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddWebsiteServlet</servlet-name>
+    <url-pattern>/AddWebsiteServlet</url-pattern>
   </servlet-mapping>
 </web-app>

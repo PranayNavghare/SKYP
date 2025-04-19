@@ -47,7 +47,7 @@ body {
 <script type="text/javascript">
 	setTimeout(function() {
 		window.location.href = "index.jsp";
-	}, 3000);
+	}, 1000);
 </script>
 
 </head>

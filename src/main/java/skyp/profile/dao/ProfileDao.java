@@ -14,7 +14,7 @@ public class ProfileDao {
     private static final String JDBC_PASSWORD = "#Pranay999";
 
     public Profile getProfileByUsername(String username) throws ClassNotFoundException, SQLException {
-        String SELECT_PROFILE_SQL = "SELECT username, company, phone, email FROM customerdb WHERE username = ?";
+        String SELECT_PROFILE_SQL = "SELECT username, company, phone, email FROM users WHERE username = ?";
         Profile profile = null;
 
         Class.forName("com.mysql.cj.jdbc.Driver");
