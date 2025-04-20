@@ -9,19 +9,30 @@
     <link rel="stylesheet" href="assets/css/styles2.css"> <!-- External CSS File -->
     <script>
 	document.addEventListener("DOMContentLoaded", function () {
-    	const form = document.querySelector(".auth-form");
-    	const password = form.querySelector("input[name='password']");
-    	const confirmPassword = form.querySelector("input[name='passwordCon']");
+    const form = document.querySelector(".auth-form");
+    const password = form.querySelector("input[name='password']");
+    const confirmPassword = form.querySelector("input[name='passwordCon']");
+    const email = form.querySelector("input[name='email']");
 
-    	form.addEventListener("submit", function (event) {
-        	if (password.value !== confirmPassword.value) {
-            	event.preventDefault(); // Prevent form submission
-            	alert("Passwords do not match. Please try again!");
-            	confirmPassword.value = ""; // Clear confirm password field
-            	confirmPassword.focus(); // Focus on confirm password field
-        	}
-    	});
-	});
+    form.addEventListener("submit", function (event) {
+        // Password confirmation validation
+        if (password.value !== confirmPassword.value) {
+            event.preventDefault(); // Prevent form submission
+            alert("Passwords do not match. Please try again!");
+            confirmPassword.value = ""; // Clear confirm password field
+            confirmPassword.focus(); // Focus on confirm password field
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email.value)) {
+            event.preventDefault(); // Prevent form submission
+            alert("Invalid email format. Please enter a valid email address!");
+            email.focus(); // Focus on email field
+        }
+    });
+});
 	</script>
 
 </head>

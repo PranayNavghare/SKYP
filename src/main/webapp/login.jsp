@@ -17,7 +17,7 @@
         </div>
         <div class="form-section">
             <h3>Login to Your Account</h3>
-            <form action="<%=request.getContextPath()%>/login" method="post">
+            <form action="<%=request.getContextPath()%>/Login" method="post">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" name="accountid" placeholder="Account ID" required>
@@ -33,9 +33,10 @@
                 <button type="submit" class="auth-btn">
                     <i class="fas fa-sign-in-alt"></i> Login
                 </button>
-                <button type="reset" class="reset-btn">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
+                <!-- Forgot Password Button -->
+                <a href="./forgotPassword.jsp" class="auth-btn" style="text-align: center; display: block; margin-top: 10px;">
+                    <i class="fas fa-key"></i> Forgot Password?
+                </a>
             </form>
         </div>
     </div>

@@ -1,0 +1,73 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #fff; /* White text */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #ff4d94; /* Pink accent color */
+    font-size: 2rem;
+}
+
+/* Plans Container */
+.plans-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual Plan Card */
+.plan {
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    border: 1px solid #333; /* Subtle border */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+}
+
+.plan h2 {
+    font-size: 1.8rem;
+    color: #ff4d94; /* Pink accent color */
+    margin-bottom: 10px;
+}
+
+.plan p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #bbb; /* Light gray text */
+}
+
+.plan strong {
+    color: #fff; /* White text for emphasis */
+}
+
+/* Button Styles */
+.plan button {
+    background-color: #ff4d94; /* Pink button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.plan button:hover {
+    background-color: #e03e5e; /* Darker pink on hover */
+}

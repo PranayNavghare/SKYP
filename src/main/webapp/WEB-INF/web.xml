@@ -37,7 +37,7 @@
     <description></description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
-    <servlet-class>skyp.login.web.Login</servlet-class>
+    <servlet-class>skyp.login.controller.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -73,36 +73,76 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FileUploadServlet</display-name>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <servlet-class>skyp.usage.controller.FileUploadServlet</servlet-class>
+    <display-name>FileServeServlet</display-name>
+    <servlet-name>FileServeServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.FileServeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/FileUploadServlet</url-pattern>
+    <servlet-name>FileServeServlet</servlet-name>
+    <url-pattern>/FileServeServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DashboardServlet</display-name>
-    <servlet-name>DashboardServlet</servlet-name>
-    <servlet-class>skyp.usage.controller.DashboardServlet</servlet-class>
+    <display-name>ForgotPasswordServlet</display-name>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <servlet-class>skyp.registration.controller.ForgotPasswordServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DashboardServlet</servlet-name>
-    <url-pattern>/DashboardServlet</url-pattern>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <url-pattern>/ForgotPasswordServlet</url-pattern>
   </servlet-mapping>
+  <context-param>
+    <param-name>uploadPath</param-name>
+    <param-value>D:\Dynamic Web Project\SKYP\src\main\webapp\uploads</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>RunProjectServlet</display-name>
+    <servlet-name>RunProjectServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.RunProjectServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-    <servlet-name>DashboardServlet</servlet-name>
-    <url-pattern>/dashboard</url-pattern>
+    <servlet-name>RunProjectServlet</servlet-name>
+    <url-pattern>/RunProjectServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AddWebsiteServlet</display-name>
-    <servlet-name>AddWebsiteServlet</servlet-name>
-    <servlet-class>skyp.usage.controller.AddWebsiteServlet</servlet-class>
+    <display-name>ChangeStatusServlet</display-name>
+    <servlet-name>ChangeStatusServlet</servlet-name>
+    <servlet-class>skyp.usage.controller.ChangeStatusServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AddWebsiteServlet</servlet-name>
-    <url-pattern>/AddWebsiteServlet</url-pattern>
+    <servlet-name>ChangeStatusServlet</servlet-name>
+    <url-pattern>/ChangeStatusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BillingServlet</display-name>
+    <servlet-name>BillingServlet</servlet-name>
+    <servlet-class>skyp.billing.controller.BillingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BillingServlet</servlet-name>
+    <url-pattern>/BillingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlanSelectionServlet</display-name>
+    <servlet-name>PlanSelectionServlet</servlet-name>
+    <servlet-class>skyp.billing.controller.PlanSelectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanSelectionServlet</servlet-name>
+    <url-pattern>/PlanSelectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlanDisplayServlet</display-name>
+    <servlet-name>PlanDisplayServlet</servlet-name>
+    <servlet-class>skyp.billing.controller.PlanDisplayServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanDisplayServlet</servlet-name>
+    <url-pattern>/PlanDisplayServlet</url-pattern>
   </servlet-mapping>
 </web-app>

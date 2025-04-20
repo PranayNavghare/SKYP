@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <%@ page import="java.util.List"%>
 <%@ page import="skyp.usage.model.Website"%>
+<%@ page import="java.sql.*"%>
 
 <%
 // Check if the session is valid
@@ -10,8 +10,62 @@ if (session == null || session.getAttribute("username") == null) {
 	response.sendRedirect("login.jsp"); // Redirect to login if session is invalid
 	return;
 }
+
+// Prevent browser caching
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+response.setHeader("Pragma", "no-cache");
+response.setDateHeader("Expires", 0);
+
+// Retrieve the username from the session
+String fullName = (String) session.getAttribute("username");
+String initials = "U"; // Default Initial
+
+// Calculate initials from the username
+if (fullName != null && !fullName.trim().isEmpty()) {
+	String[] nameParts = fullName.trim().split("\\s+"); // Split by space
+	String firstInitial = nameParts[0].substring(0, 1).toUpperCase();
+	String lastInitial = nameParts.length > 1 ? nameParts[1].substring(0, 1).toUpperCase() : "";
+	initials = firstInitial + lastInitial;
+}
+
+// Retrieve the list of websites from the request attribute
+List<skyp.usage.model.Website> websites = (List<skyp.usage.model.Website>) request.getAttribute("websites");
+
+// Fetch the user's current plan details from the database
+Integer userId = (Integer) session.getAttribute("userId");
+String currentPlanName = "No Plan Selected";
+double currentPlanPrice = 0.0;
+int storageLimit = 0;
+int websiteLimit = 0;
+String nextBillingDate = "N/A";
+
+try {
+	String jdbcURL = "jdbc:mysql://localhost:3306/skyp";
+	String dbUser = "root";
+	String dbPassword = "#Pranay999";
+
+	Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+	String sql = "SELECT p.name, p.price, p.storage_limit, p.website_limit, b.next_billing_date " + "FROM billing b "
+	+ "JOIN plans p ON b.plan_id = p.id " + "WHERE b.user_id = ? " + "ORDER BY b.billing_date DESC LIMIT 1";
+	PreparedStatement statement = connection.prepareStatement(sql);
+	statement.setInt(1, userId);
+	ResultSet rs = statement.executeQuery();
+
+	if (rs.next()) {
+		currentPlanName = rs.getString("name");
+		currentPlanPrice = rs.getDouble("price");
+		storageLimit = rs.getInt("storage_limit");
+		websiteLimit = rs.getInt("website_limit");
+		nextBillingDate = rs.getTimestamp("next_billing_date").toString();
+	}
+
+	connection.close();
+} catch (Exception e) {
+	e.printStackTrace();
+}
 %>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,47 +74,6 @@ if (session == null || session.getAttribute("username") == null) {
 <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-
-	<script>
-		function openModal() {
-			document.getElementById("addWebsiteModal").style.display = "block";
-		}
-
-		function closeModal() {
-			document.getElementById("addWebsiteModal").style.display = "none";
-		}
-
-		// Close the modal when clicking outside of it
-		window.onclick = function(event) {
-			const modal = document.getElementById("addWebsiteModal");
-			if (event.target === modal) {
-				modal.style.display = "none";
-			}
-		};
-	</script>
-
-	<%
-	// Prevent browser caching
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
-	response.setHeader("Pragma", "no-cache");
-	response.setDateHeader("Expires", 0);
-
-	// Retrieve the username from the session
-	String fullName = (String) session.getAttribute("username");
-	String initials = "U"; // Default Initial
-
-	// Calculate initials from the username
-	if (fullName != null && !fullName.trim().isEmpty()) {
-		String[] nameParts = fullName.trim().split("\\s+"); // Split by space
-		String firstInitial = nameParts[0].substring(0, 1).toUpperCase();
-		String lastInitial = nameParts.length > 1 ? nameParts[1].substring(0, 1).toUpperCase() : "";
-		initials = firstInitial + lastInitial;
-	}
-
-	// Retrieve the list of websites from the request attribute
-	List<skyp.usage.model.Website> websites = (List<skyp.usage.model.Website>) request.getAttribute("websites");
-	%>
-
 	<header>
 		<div class="logo">
 			<a href="index.jsp"> <img src="assets/images/logo.png"
@@ -94,12 +107,28 @@ if (session == null || session.getAttribute("username") == null) {
 					<%
 					if (websites != null && !websites.isEmpty()) {
 						for (skyp.usage.model.Website website : websites) {
+							String publicUrl = request.getContextPath() + "/uploads/" + website.getUsername() + "/"
+							+ website.getWebsiteName() + "/index.html";
 					%>
 					<tr>
 						<td><%=website.getWebsiteName()%></td>
 						<td><%=website.getDomain()%></td>
 						<td class="status <%=website.getStatus().toLowerCase()%>"><%=website.getStatus()%></td>
-						<td><button class="manage-btn">Manage</button></td>
+						<td>
+							<!-- Visit Website --> <a href="<%=publicUrl%>" target="_blank"
+							class="visit-btn">Visit Website</a> <!-- Change Status -->
+							<form action="<%=request.getContextPath()%>/ChangeStatusServlet"
+								method="post" style="display: inline;">
+								<input type="hidden" name="websiteId"
+									value="<%=website.getId()%>"> <select name="status"
+									onchange="this.form.submit()">
+									<option value="Active"
+										<%=website.getStatus().equals("Active") ? "selected" : ""%>>Active</option>
+									<option value="Inactive"
+										<%=website.getStatus().equals("Inactive") ? "selected" : ""%>>Inactive</option>
+								</select>
+							</form>
+						</td>
 					</tr>
 					<%
 					}
@@ -115,56 +144,80 @@ if (session == null || session.getAttribute("username") == null) {
 				</tbody>
 			</table>
 		</div>
-
-		<!-- Add Website Form -->
-		<div class="add-website-form" >
-			<h3>Add a New Website</h3>
-			<form action="<%=request.getContextPath()%>/AddWebsiteServlet"
-				method="post">
-				<div class="form-group">
-					<label for="websiteName">Website Name:</label> <input type="text"
-						id="websiteName" name="websiteName" required>
-				</div>
-				<div class="form-group">
-					<label for="domain">Domain:</label> <input type="text" id="domain"
-						name="domain" placeholder="example.com" required>
-				</div>
-				<button type="submit" class="submit-btn">Add Website</button>
-			</form>
-		</div>
 	</section>
 
+	<%
+	int currentWebsiteCount = websites != null ? websites.size() : 0;
+	%>
+	<section class="add-website">
+		<h2>Add a New Website</h2>
+		<%
+		if (currentWebsiteCount >= websiteLimit) {
+		%>
+		<p>You have reached the maximum number of websites allowed for
+			your plan.</p>
+		<%
+		} else {
+		%>
+		<form action="<%=request.getContextPath()%>/AddWebsiteServlet"
+			method="post" enctype="multipart/form-data"
+			style="background-color: #222; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); max-width: 600px; margin: 0 auto; color: #fff; box-sizing: border-box;">
 
+			<label for="websiteName"
+				style="display: block; font-size: 1rem; margin-bottom: 5px; color: #ccc;">Website
+				Name:</label> <input type="text" id="websiteName" name="websiteName"
+				required
+				style="width: calc(100% - 20px); padding: 10px; font-size: 1rem; border: 1px solid #444; border-radius: 5px; background: #333; color: #fff; margin-bottom: 15px; box-sizing: border-box;">
 
-	<section class="management">
-		<h2>File & Database Management</h2>
-		<div class="management-grid">
-			<div class="box">
-				<h3>File Manager</h3>
-				<p>Upload, edit, and manage your website files.</p>
-				<form action="<%=request.getContextPath()%>/FileUploadServlet"
-					method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="file">Choose File:</label> <input type="file"
-							id="file" name="file" required>
-					</div>
-					<button type="submit" class="file-btn">Upload File</button>
-				</form>
-			</div>
-			<div class="box">
-				<h3>Database Access</h3>
-				<p>Manage your MySQL/PostgreSQL databases.</p>
-				<button class="db-btn">Access Database</button>
-			</div>
-		</div>
+			<label for="domain"
+				style="display: block; font-size: 1rem; margin-bottom: 5px; color: #ccc;">Domain:</label>
+			<input type="text" id="domain" name="domain" required
+				style="width: calc(100% - 20px); padding: 10px; font-size: 1rem; border: 1px solid #444; border-radius: 5px; background: #333; color: #fff; margin-bottom: 15px; box-sizing: border-box;">
+
+			<label for="websiteFiles"
+				style="display: block; font-size: 1rem; margin-bottom: 5px; color: #ccc;">Upload
+				Website Files:</label> <input type="file" id="websiteFiles"
+				name="websiteFiles" multiple required
+				style="width: calc(100% - 20px); padding: 10px; font-size: 1rem; border: 1px solid #444; border-radius: 5px; background: #333; color: #fff; margin-bottom: 20px; box-sizing: border-box;">
+
+			<button type="submit"
+				style="background-color: #ff4d94; color: white; padding: 12px 20px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; width: 100%;"
+				onmouseover="this.style.backgroundColor='#ff1a75'; this.style.transform='scale(1.05)';"
+				onmouseout="this.style.backgroundColor='#ff4d94'; this.style.transform='scale(1)';">
+				Add Website</button>
+		</form>
+		<%
+		}
+		%>
 	</section>
 
 	<section class="hosting">
 		<h2>Hosting Plan</h2>
 		<p>
-			You are currently on the <strong>Pro Plan</strong>.
+			<strong>Plan Name:</strong>
+			<%=currentPlanName%></p>
+		<p>
+			<strong>Price:</strong> $<%=currentPlanPrice%>
+			per month
 		</p>
-		<button class="upgrade-btn">Upgrade Plan</button>
+		<p>
+			<strong>Storage Limit:</strong>
+			<%=storageLimit%>
+			GB
+		</p>
+		<p>
+			<strong>Website Limit:</strong>
+			<%=websiteLimit%>
+			websites
+		</p>
+		<p>
+			<strong>Next Billing Date:</strong>
+			<%=nextBillingDate%></p>
+		<a href="PlanDisplayServlet"
+			style="background-color: #ff4d94; color: white; padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; text-decoration: none; cursor: pointer; transition: background-color 0.3s ease;"
+			onmouseover="this.style.backgroundColor='#ff1a75';"
+			onmouseout="this.style.backgroundColor='#ff4d94';"> Upgrade Plan
+		</a>
 	</section>
 
 	<section class="support">
@@ -174,6 +227,5 @@ if (session == null || session.getAttribute("username") == null) {
 		</p>
 		<button class="support-btn">Submit a Support Ticket</button>
 	</section>
-
 </body>
 </html>

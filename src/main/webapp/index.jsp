@@ -4,7 +4,7 @@
     <section class="hero">
         <h1>Welcome to SKYP</h1>
         <p>Experience seamless web hosting with our reliable and powerful platform.</p>
-        <a href="register.html" class="cta-btn">Get Started</a>
+        <a href="custReg.jsp" class="cta-btn">Get Started</a>
     </section>
 
     <!-- Features Section -->

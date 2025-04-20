@@ -22,7 +22,7 @@
         <h2 class="success-message">Account Created Successfully!</h2>
         <p class="account-id">Your Account ID is: 
             <%
-            String q = "select id from customerdb where username=?";
+            String q = "select id from users where username=?";
             String uname = request.getParameter("username");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
